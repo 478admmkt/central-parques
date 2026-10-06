@@ -11,6 +11,8 @@ Portal do cliente (Animália Park e Aquário de São Paulo). Site estático: sem
 | `enxoval-google-animalia.html` | Start → Enxoval de Assets Google Ads · Animália Park |
 | `enxoval-meta-aquario.html` | Start → Enxoval de Assets Meta Ads · Aquário de São Paulo |
 | `enxoval-google-aquario.html` | Start → Enxoval de Assets Google Ads · Aquário de São Paulo |
+| `instalar.html` | Guia "Salvar na tela de início" (iOS e Android), linkado no login e no rodapé |
+| `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `manifest.webmanifest` | Favicon e ícones de tela de início (precisam ficar na raiz, ao lado do `index.html`) |
 | `assets/` | Logos em PNG com fundo transparente (referência; já estão embutidos nos HTMLs) |
 
 Os materiais abrem dentro da Central (visualizador interno) e também funcionam sozinhos, em nova aba.
