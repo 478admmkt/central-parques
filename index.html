@@ -444,6 +444,7 @@ const ICONS={
   clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>',
   arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  google:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 9-9 9-9-9z"/><path d="M9 12l2 2 4-4"/></svg>',
   sheet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>'
 };
 const PLAN_DATE=new Date(2026,9,1); // 01/10/2026
@@ -466,6 +467,13 @@ function baseCats(bu){return [
   {id:'reports',title:'Reports',icon:'chart',status:'soon',
    desc:'Resultados semanais do projeto, liberados a cada semana concluída.',
    items:Array.from({length:10},(_,i)=>({t:'Report · Semana '+(i+1),d:'Resultados, aprendizados e próximos passos da semana '+(i+1)+'.',available:false}))},
+  {id:'google',title:'Parceria Google',icon:'google',status:'soon',
+   desc:'Plano do Google para as contas de Google Ads: prioridades, plano de ação, cronograma e documentos da parceria.',
+   items:[
+     {t:'Central da Parceria Google',d:'Recomendações do Google por parque, com próximas ações, status, decisões, evidências e cronograma.',available:true,doc:'parceria-google/index.html?parque='+(bu==='aquario'?'ASP':'ANI')},
+     {t:'Apresentação estratégica · 27/10/2026',d:'Programa de Crescimento Acelerado do Google: diagnóstico, os 4 pilares e os próximos passos.',available:true,url:'parceria-google/arquivos/apresentacao-google-27-10-2026.pdf'},
+     {t:'Planilha de recomendações · Google Ads',d:'Plano de otimização das contas com as recomendações do Google (arquivo original em Excel).',available:true,url:'parceria-google/arquivos/planilha-google-ads-plano-de-otimizacao.xlsx'}
+   ]},
   {id:'links',title:'Links Úteis',icon:'link',status:'soon',
    desc:'Planilhas de trabalho do projeto, sempre atualizadas.',
    items:[
@@ -516,7 +524,7 @@ function openCat(id){curCat=id;renderCat();show('#cat');}
 function goHub(){renderHub();show('#hub');}
 function openDoc(cid,k){const c=CATS[curBU].find(x=>x.id===cid),i=c.items[k];
   $('#vTitle').firstChild.textContent=i.t;$('#vSub').textContent=BUS[curBU].name+' · '+c.title;
-  $('#vOpen').href=i.doc;$('#vFrame').src=i.doc+'?embed';show('#viewer');}
+  $('#vOpen').href=i.doc;$('#vFrame').src=i.doc+(i.doc.includes('?')?'&':'?')+'embed';show('#viewer');}
 function closeViewer(){$('#vFrame').src='about:blank';renderCat();show('#cat');}
 function goSelect(){show('#select');}
 function logout(){user='';$('#pw').value='';$('#user').value='';show('#login');}
