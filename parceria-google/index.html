@@ -771,7 +771,7 @@ function HeroMeta({ M, park }) {
   return html`<div class="meta">
     <div><b class="num">${orig}</b>recomendações</div>
     <div><b class="num">${t}</b>acompanhamentos por parque</div>
-    <div><b class="num">${pct(ap, t)}%</b>aplicadas</div></div>`;
+    <div><b class="num">${pct(ap, t)}%</b>concluídas</div></div>`;
 }
 
 /* ---------------- fluxo de status ---------------- */
@@ -803,8 +803,8 @@ function Overview({ M, park, go, setSel, pickPark }) {
   <div class="grid" style=${{ gap: '16px' }}>
     <div class="kpis">
       <div class="panel kpi"><div class="v num">${T}</div><div class="l">Ações acompanhadas</div><div class="d">${pa} da planilha · ${ae} da apresentação${eq ? ` · ${eq} da equipe` : ''}, desdobradas por parque</div></div>
-      <div class="panel kpi"><div class="v num">${pct(ap, T)}<small>%</small></div><div class="l">Aplicadas</div><div class="d">${ap} de ${T} ações implementadas</div><div class="meter"><i style=${{ width: pct(ap, T) + '%', background: 'var(--s-aplicada)' }}></i></div></div>
-      <div class="panel kpi"><div class="v num">${pct(ap + ds, T)}<small>%</small></div><div class="l">Com decisão definitiva</div><div class="d">Aplicadas (${ap}) + descartadas (${ds}). Descartadas não contam como implementadas.</div><div class="meter"><i style=${{ width: pct(ap, T) + '%', background: 'var(--s-aplicada)' }}></i><i style=${{ width: pct(ds, T) + '%', background: 'var(--s-descartada)' }}></i></div></div>
+      <div class="panel kpi"><div class="v num">${pct(ap, T)}<small>%</small></div><div class="l">Concluídas</div><div class="d">${ap} de ${T} ações implementadas</div><div class="meter"><i style=${{ width: pct(ap, T) + '%', background: 'var(--s-aplicada)' }}></i></div></div>
+      <div class="panel kpi"><div class="v num">${pct(ap + ds, T)}<small>%</small></div><div class="l">Com decisão definitiva</div><div class="d">Concluídas (${ap}) + descartadas (${ds}). Descartadas não contam como implementadas.</div><div class="meter"><i style=${{ width: pct(ap, T) + '%', background: 'var(--s-aplicada)' }}></i><i style=${{ width: pct(ds, T) + '%', background: 'var(--s-descartada)' }}></i></div></div>
       <div class="panel kpi"><div class="v num">${week}</div><div class="l">Vencem nos próximos 7 dias</div><div class="d">${late ? html`<button class="linkbtn" onClick=${() => go('plano-de-acao', { per: 'atrasadas' })}>${late} com prazo do Google expirado</button> — revisar datas` : 'Nenhum prazo expirado'}</div></div>
     </div>
 
@@ -848,7 +848,7 @@ function ParkCard({ p, M, onClick }) {
   const nxt = L.filter(e => !e.done && !e.r.recorrente && !e.late).sort((a, b) => a.prazo.localeCompare(b.prazo))[0];
   return html`<button class="panel parkcard" style=${{ textAlign: 'left' }} onClick=${onClick}>
     <div class="ph" style=${{ marginBottom: '6px' }}><h3>${PN[p]}</h3>${p === 'CDC' ? html`<span class="chip ghost" title="Conta fora do escopo atual de gestão da equipe">Acompanhamento informativo</span>` : null}</div>
-    <div style=${{ display: 'flex', alignItems: 'baseline', gap: '8px' }}><span class="pct num">${pct(c.aplicada || 0, T)}%</span><span class="small muted">aplicadas · ${c.aplicada || 0} de ${T}</span></div>
+    <div style=${{ display: 'flex', alignItems: 'baseline', gap: '8px' }}><span class="pct num">${pct(c.aplicada || 0, T)}%</span><span class="small muted">concluídas · ${c.aplicada || 0} de ${T}</span></div>
     <div style=${{ margin: '10px 0 4px' }}><${SBar} counts=${c} total=${T} /></div>
     <div class="row"><span>Prioridade alta em aberto</span><b>${altas}</b></div>
     <div class="row"><span>Próximo prazo</span><b>${nxt ? fd(nxt.prazo) : '—'}</b></div>
@@ -890,7 +890,7 @@ function Evolution({ L }) {
   const ticks = [0, Math.round(ymax / 2), ymax];
   const xt = [0, Math.round(n / 2), n];
   const hasData = ev.length > 0;
-  return html`<svg class="chart" viewBox=${`0 0 ${W} ${H}`} role="img" aria-label="Evolução acumulada de ações aplicadas e com decisão definitiva">
+  return html`<svg class="chart" viewBox=${`0 0 ${W} ${H}`} role="img" aria-label="Evolução acumulada de ações concluídas e com decisão definitiva">
     ${ticks.map(t => html`<g><line x1=${pl} x2=${W - pr} y1=${y(t)} y2=${y(t)} stroke="var(--line)" /><text x=${pl - 6} y=${y(t) + 4} text-anchor="end" font-size="10.5">${t}</text></g>`)}
     ${xt.map(d => html`<text x=${x(d)} y=${H - 8} text-anchor=${d === 0 ? 'start' : d === n ? 'end' : 'middle'} font-size="10.5">${fd(addDays(start, d))}</text>`)}
     <path d=${path(ptsA) + `L${x(n)} ${y(0)}L${x(0)} ${y(0)}Z`} fill="var(--s-aplicada)" opacity=".14" />
@@ -899,7 +899,7 @@ function Evolution({ L }) {
     <circle cx=${x(n)} cy=${y(ptsA[n])} r="3.5" fill="var(--s-aplicada)" />
     ${!hasData ? html`<text x=${(W + pl) / 2} y=${H / 2 - 4} text-anchor="middle" font-size="12">As implementações aparecem aqui conforme os status forem atualizados.</text>` : null}
   </svg>
-  <div class="legend" style=${{ marginTop: '4px' }}><span class="small"><span class="sdot" style=${{ background: 'var(--s-aplicada)' }}></span> Aplicadas (acumulado)</span><span class="small"><span class="sdot" style=${{ background: 'var(--s-descartada)' }}></span> Com decisão definitiva</span></div>`;
+  <div class="legend" style=${{ marginTop: '4px' }}><span class="small"><span class="sdot" style=${{ background: 'var(--s-aplicada)' }}></span> Concluídas (acumulado)</span><span class="small"><span class="sdot" style=${{ background: 'var(--s-descartada)' }}></span> Com decisão definitiva</span></div>`;
 }
 function Strategy({ M, go, setSel }) {
   const [open, setOpen] = useState(false);
@@ -909,7 +909,7 @@ function Strategy({ M, go, setSel }) {
       <button class="linkbtn small" onClick=${() => setOpen(!open)}>${open ? 'Ocultar diretrizes' : 'Ver diretrizes e cobertura'}</button></div>
     <div class="pillars">${D.pilares.map((p, i) => { const L = byPil(p.id), c = countBy(L, e => e.status); return html`<div class="pillar">
       <div class="n">PILAR ${i + 1}</div><h4>${p.nome}</h4><div class="small" style=${{ fontWeight: 600 }}>${p.sub}</div><p>${p.texto}</p>
-      ${L.length ? html`<${SBar} counts=${c} total=${L.length} /><div class="tiny muted" style=${{ marginTop: '6px' }}>${c.aplicada || 0} de ${L.length} aplicadas</div>` : html`<div class="tiny muted">Sem ações neste filtro</div>`}</div>`; })}</div>
+      ${L.length ? html`<${SBar} counts=${c} total=${L.length} /><div class="tiny muted" style=${{ marginTop: '6px' }}>${c.aplicada || 0} de ${L.length} concluídas</div>` : html`<div class="tiny muted">Sem ações neste filtro</div>`}</div>`; })}</div>
     ${open ? html`<div style=${{ marginTop: '16px' }}>
       <div class="grid g-3" style=${{ marginBottom: '14px' }}>${D.insights.map(g => html`<div><div class="eyebrow" style=${{ marginBottom: '6px' }}>${g.t}</div><ul style=${{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: 'var(--ink-2)' }}>${g.itens.map(t => html`<li>${t}</li>`)}</ul></div>`)}</div>
       <div class="tablewrap"><table><thead><tr><th>Frente</th><th>Diretriz do Google</th><th>Onde está na Central</th></tr></thead><tbody>
@@ -958,7 +958,7 @@ function NextActions({ M, setSel, onStatus }) {
         <div><b>Prioridade imediata:</b> prioridade Alta com esforço Baixo (definidos pelo Google), prazo expirado ou vencendo em até 3 dias, ou ação fixada pela equipe.<br/><b>Dependentes de validação:</b> exigem aprovação de verba, acesso ao site, material criativo, base de clientes ou a conclusão de outra ação.</div>
         <div><b>Acompanhamento:</b> rotinas contínuas e ações que a equipe colocar aqui.<br/><b>Próximas implementações:</b> demais ações.<br/><b>Ordem dentro de cada faixa:</b> prioridade (30/20/10) + facilidade (15/8/0) + impacto (10/5/0) + proximidade do prazo (até 20). Ao arrastar para outra faixa, a posição escolhida pela equipe passa a valer.</div>
       </div></div>` : null}
-    <div class="k-tools"><span class="hint"><i></i>${ed ? 'Arraste os cards para mover. Ao soltar em Concluído, a Central pede a data e a evidência.' : 'Acesso de consulta: os cards não podem ser movidos.'}</span><span class="grow"></span>
+    <div class="k-tools"><span class="hint"><i></i>${S.mode === 'loading' ? 'Conectando…' : ed ? 'Arraste os cards para mover. Ao soltar em Concluído, a Central pede a data e a evidência.' : 'Acesso de consulta: os cards não podem ser movidos.'}</span><span class="grow"></span>
       ${descartadas.length ? html`<button class="btn sm" onClick=${() => setDisc(!disc)}>${disc ? 'Ocultar descartadas' : `Ver descartadas (${descartadas.length})`}</button>` : null}</div>
     <div class="kwrap"><div class="kboard" role="grid" aria-label="Quadro de próximas ações">
       ${KCOLS.map(st => html`<div class="kcol-h" role="columnheader"><${SDot} s=${st} /><h3>${SM[st].l}</h3><span class="n num">${colCount(st)}</span></div>`)}
@@ -1265,7 +1265,7 @@ function Drawer({ e, M, close, setModal, onStatus, setViewer, setSel }) {
       <section class="d-sec"><h3>Status de execução</h3>
         <div class="stepper">${FLOW.map((s, i) => { const ci = FLOW.indexOf(e.status); const cur = e.status === s; return html`<button class=${'step' + (cur ? ' cur' : ci > i ? ' done' : '')} style=${cur ? { background: SM[s].c, color: (s === 'aplicada' || s === 'analise') ? '#01032c' : '#fff' } : null} disabled=${!ed || cur} onClick=${() => onStatus(e, s)}>${SM[s].l}</button>`; })}</div>
         <div style=${{ display: 'flex', justifyContent: 'space-between', gap: '8px', marginTop: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <span class="small muted">${e.status === 'descartada' ? html`<b style=${{ color: 'var(--ink)' }}>Descartada.</b> Motivo: ${e.motivoDescarte || '—'}` : e.status === 'aplicada' ? html`<b style=${{ color: 'var(--accent-ink)' }}>Aplicada em ${fdy(e.dataConclusao)}.</b>` : lane ? html`Em Próximas ações: <b>${LM[lane].l}</b>` : ''}</span>
+          <span class="small muted">${e.status === 'descartada' ? html`<b style=${{ color: 'var(--ink)' }}>Descartada.</b> Motivo: ${e.motivoDescarte || '—'}` : e.status === 'aplicada' ? html`<b style=${{ color: 'var(--accent-ink)' }}>Concluída em ${fdy(e.dataConclusao)}.</b>` : lane ? html`Em Próximas ações: <b>${LM[lane].l}</b>` : ''}</span>
           ${ed && e.status !== 'descartada' ? html`<button class="btn sm danger" onClick=${() => onStatus(e, 'descartada')}>Descartar ação</button>` : null}
           ${ed && e.status === 'descartada' ? html`<button class="btn sm" onClick=${() => onStatus(e, 'pendente')}>Reabrir</button>` : null}
         </div></section>
@@ -1358,7 +1358,7 @@ function Modal({ m, close, M }) {
     ${f.tipo === 'arquivo' ? fileInput : null}
     <div class="field"><label for="m-desc">Descrição dos ajustes realizados</label><textarea id="m-desc" value=${f.descricao} onInput=${ev => up('descricao', ev.target.value)}></textarea></div>`;
   let body = null;
-  if (m.type === 'aplicar') body = html`<h3>Marcar como aplicada</h3><p class="small muted">${e.r.id} · ${PN[e.p]} — ${e.r.titulo}</p>
+  if (m.type === 'aplicar') body = html`<h3>Marcar como concluída</h3><p class="small muted">${e.r.id} · ${PN[e.p]} — ${e.r.titulo}</p>
     <div class="grid" style=${{ gap: '10px', marginTop: '10px' }}>
       <div class="field"><label for="m-data">Data de conclusão</label><input id="m-data" type="date" value=${f.data} onInput=${ev => up('data', ev.target.value)} /></div>
       <div class="field"><label for="m-obs">Observações</label><textarea id="m-obs" value=${f.obs} onInput=${ev => up('obs', ev.target.value)} placeholder="O que foi feito e onde"></textarea></div>
