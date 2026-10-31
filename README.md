@@ -43,3 +43,9 @@ Para atualizar: substitua os arquivos alterados pelo conteúdo do novo zip e fa�
 ## Liberar novos materiais
 
 No `index.html`, em `baseCats(bu)`, cada item tem `available` e `doc`/`url`. Para liberar um report ou plano de mídia, basta marcar `available:true` e apontar `doc:'arquivo.html'` (abre no visualizador) ou `url:'https://...'` (abre em nova aba), e subir o arquivo junto.
+
+## Visual
+
+Tema claro da 478 (referência: material "Engenharia de Demanda 478"): fundos claros, cards brancos com cantos arredondados, Poppins nos títulos e DM Sans nos textos, azul #0c25a3 como cor principal e verde #0dea9b nos marcadores. As regras ficam no bloco "Tema claro 478" no fim do CSS de cada página.
+
+Na Parceria Google, Próximas ações é um Kanban: colunas Pendente → Em análise → Em produção → Em aplicação → Concluído, faixas por prioridade, cards arrastáveis.
