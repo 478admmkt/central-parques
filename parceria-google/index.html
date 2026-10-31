@@ -16,14 +16,14 @@
   --font-display:"Poppins","Segoe UI",system-ui,sans-serif; --font-text:"DM Sans",system-ui,sans-serif;
   --r-sm:4px; --r-md:8px; --r-lg:8px; --chanfro:16px;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme:dark){:root.sem-tema-escuro{
   --bg:#010318; --surface:#08103f; --surface-2:#0d1650; --surface-3:#141d5e;
   --ink:#f3f4f7; --ink-2:#cdd2ea; --muted:#a7aecb; --line:#232a5c; --line-2:#6d77a8;
   --brand:#0dea9b; --brand-2:#4ef2b8; --on-brand:#01032c; --brand-soft:#132061; --accent:#0dea9b; --accent-ink:#0dea9b; --accent-soft:#0b3a3a;
   --danger:#ff7682; --danger-soft:#3a1027; --warn:#f2b545; --warn-soft:#3a2a0a;
   --s-pendente:#7d86ad; --s-analise:#f2b545; --s-planejada:#7f97ff; --s-andamento:#4f6bff; --s-aplicada:#0dea9b; --s-descartada:#6b7196;
   --shadow:0 1px 2px #00000099; --shadow-2:0 12px 32px #000000b3; --focus:#0dea9b; color-scheme:dark}}
-:root[data-theme="dark"]{
+:root.sem-tema-escuro-2{
   --bg:#010318; --surface:#08103f; --surface-2:#0d1650; --surface-3:#141d5e;
   --ink:#f3f4f7; --ink-2:#cdd2ea; --muted:#a7aecb; --line:#232a5c; --line-2:#6d77a8;
   --brand:#0dea9b; --brand-2:#4ef2b8; --on-brand:#01032c; --brand-soft:#132061; --accent:#0dea9b; --accent-ink:#0dea9b; --accent-soft:#0b3a3a;
@@ -353,6 +353,116 @@ svg text{fill:currentColor}
 
 .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,#0c25a3 0%,#0dea9b 100%)}
 .d-head{border-top:3px solid transparent;border-image:linear-gradient(90deg,#0c25a3,#0dea9b) 1}
+
+/* ===================== Tema claro 478 (referência Engenharia de Demanda) ===================== */
+:root{
+  --bg:#f4f5f9; --surface:#ffffff; --surface-2:#f7f8fb; --surface-3:#eef0f6;
+  --ink:#01032c; --ink-2:#2f3658; --muted:#616c90; --line:#e4e6ee; --line-2:#c9cddc;
+  --brand:#0c25a3; --brand-2:#1b36c4; --on-brand:#ffffff; --brand-soft:#e9edfc; --accent:#0dea9b; --accent-ink:#04774f; --accent-soft:#dafbee;
+  --danger:#c8323f; --danger-soft:#fdecee; --warn:#9a6200; --warn-soft:#fff3d9;
+  --s-pendente:#9aa1bd; --s-analise:#d99a1e; --s-planejada:#5c78ec; --s-andamento:#0c25a3; --s-aplicada:#0bbf80; --s-descartada:#4a4f68;
+  --shadow:0 1px 2px rgba(1,3,44,.04),0 4px 14px rgba(1,3,44,.05); --shadow-2:0 10px 30px rgba(1,3,44,.10);
+  --r-sm:6px; --r-md:14px; --r-lg:20px; color-scheme:light}
+body{font-size:14.5px}
+body::before{background:#fff}
+.eyebrow{font-size:11px;letter-spacing:.2em;color:var(--muted)}
+/* cabeçalho claro */
+.band{background:#fff;color:var(--ink);border-bottom:1px solid var(--line)}
+.band svg.diamonds{display:none}
+.band .wrap{padding-block:20px 0}
+.brandrow img.logo{width:auto;height:38px}
+.brandrow .tagline{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.brandrow .tagline::before{content:"";width:34px;height:2px;border-radius:2px;background:var(--accent)}
+@media (max-width:760px){.brandrow .tagline{display:none}}
+.access{border-color:var(--line);color:var(--muted);background:var(--surface-2)}
+.access b{color:var(--ink)}
+.hero{padding:22px 0 22px;align-items:flex-end}
+.hero h1{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+.hero h1 span{color:var(--brand)}
+.hero p{color:var(--muted);font-size:15px;max-width:660px}
+.hero .meta{gap:10px}
+.hero .meta > div{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:10px 14px;color:var(--muted);font-size:12px;min-width:118px}
+.hero .meta b{color:var(--ink);font-size:22px;font-weight:700}
+/* barra de navegação */
+.bar{background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.tabs a{color:var(--muted)}
+.tabs a:hover{color:var(--ink);background:var(--surface-3)}
+.tabs a[aria-current="page"]{color:var(--brand);background:var(--brand-soft)}
+.parks{border-color:var(--line);background:var(--surface-2)}
+.parks button{color:var(--muted)}
+.parks button:hover{color:var(--ink)}
+.parks button[aria-pressed="true"]{background:var(--brand);color:#fff}
+/* superfícies */
+main{padding-block:26px 56px}
+.section-head h2{font-size:24px;font-weight:700;letter-spacing:-.015em}
+.panel{border-radius:var(--r-lg);box-shadow:var(--shadow);border-color:var(--line);padding:20px}
+.panel h3{font-size:16px;font-weight:700}
+.chamfer{border-radius:var(--r-lg);clip-path:none}
+.card{border-radius:var(--r-md);box-shadow:var(--shadow)}
+.chip{border-radius:999px;padding:2px 9px;background:var(--surface-3)}
+.chip.park{background:var(--accent-soft);color:var(--accent-ink)}
+.pill{border-radius:999px}
+.btn{border-radius:999px;border-color:var(--line-2)}
+.btn.primary{background:var(--brand);border-color:var(--brand)}
+.btn.sm{border-radius:999px}
+.fsel,.search input{border-radius:999px;border-color:var(--line)}
+.seg{border-radius:999px}
+.seg button{border-radius:999px}
+.ssel select{border-radius:999px;border-color:var(--line)}
+.tablewrap,.gantt{border-radius:var(--r-md)}
+.d-sec{border-radius:var(--r-md)}
+.drawer{background:var(--bg)}
+.banner{border-radius:var(--r-md)}
+.pillar{border-radius:var(--r-md);background:var(--surface)}
+.pillar .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--ink);font-size:13px;letter-spacing:0}
+.lane{border-radius:var(--r-lg)}
+.toast{background:var(--ink)}
+/* rodapé: faixa azul da marca */
+footer{background:var(--brand);color:#dfe4ff;border:0;margin-top:8px;padding-block:22px 28px}
+footer .wrap{gap:18px}
+footer img{height:30px}
+footer .logo-light{display:none !important}
+footer .logo-dark{display:inline !important}
+footer .tag-int{background:rgba(255,255,255,.14);color:#fff}
+/* ===================== Kanban ===================== */
+.k-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-2px 0 14px;font-size:12.5px;color:var(--muted)}
+.k-tools .hint{display:inline-flex;align-items:center;gap:8px}
+.k-tools .hint i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.k-tools .grow{flex:1}
+.kwrap{overflow-x:auto;padding-bottom:6px;margin:0 -4px}
+.kboard{display:grid;grid-template-columns:repeat(5,minmax(214px,1fr));gap:10px;min-width:1120px;padding:0 4px}
+.kcol-h{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow)}
+.kcol-h h3{font-size:13.5px;font-weight:700}
+.kcol-h .n{margin-left:auto;font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--muted);background:var(--surface-3);border-radius:999px;padding:1px 9px}
+.kcol-h .sdot{width:10px;height:10px}
+.klane-h{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:12px;padding:4px 2px 0;border:0;background:none;text-align:left;cursor:pointer;color:inherit;width:100%}
+.klane-h .mark{width:11px;height:11px;transform:rotate(45deg);border-radius:2px;flex:none}
+.klane-h h3{font-size:15px;font-weight:700}
+.klane-h .d{font-size:12.5px;color:var(--muted)}
+.klane-h .n{font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--muted)}
+.klane-h .chev{margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+.klane-h[aria-expanded="false"] .chev{transform:rotate(-45deg)}
+.kcell{background:var(--surface-3);border:1.5px dashed transparent;border-radius:16px;padding:8px;min-height:74px;display:flex;flex-direction:column;gap:8px;transition:background .12s,border-color .12s;min-width:0}
+.kcell.over{background:var(--brand-soft);border-color:var(--brand)}
+.kcell .none{font-size:11.5px;color:#a3a9c1;text-align:center;padding:16px 4px}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 11px;display:grid;gap:6px;box-shadow:var(--shadow);cursor:grab;position:relative;min-width:0}
+.kcard:hover{border-color:var(--line-2);box-shadow:var(--shadow-2)}
+.kcard.dragging{opacity:.45}
+.kcard:active{cursor:grabbing}
+.kcard .top{display:flex;align-items:center;gap:6px;min-width:0;padding-right:20px}
+.kcard .id{font-family:var(--font-display);font-weight:700;font-size:11.5px;color:var(--muted)}
+.kcard .t{font-weight:600;font-size:13.5px;line-height:1.35;background:none;border:0;padding:0;text-align:left;color:inherit;cursor:pointer}
+.kcard .t:hover{color:var(--brand)}
+.kcard .reasons .chip{font-size:11px;padding:1px 8px}
+.kcard .foot{display:flex;align-items:center;gap:8px;justify-content:space-between;font-size:11.5px;color:var(--muted);min-height:26px}
+.kcard .foot .when.late{color:var(--danger);font-weight:700}
+.kcard .pin{top:8px;right:8px}
+.kcard .ssel select{padding:2px 22px 2px 20px;font-size:11.5px}
+.kcard .ssel .sdot{left:8px;width:7px;height:7px}
+@media (hover:hover){.kcard .ssel{opacity:0;transition:opacity .12s}.kcard:hover .ssel,.kcard:focus-within .ssel{opacity:1}}
+.kcard.flash{animation:flash 1.1s ease}
+.kmore{border:0;background:none;color:var(--brand);font-weight:600;font-size:12px;cursor:pointer;padding:2px}
+.kdisc{margin-top:18px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="supabase-store.js"></script>
@@ -367,9 +477,9 @@ const PSHORT = { ASP: 'Aquário', ANI: 'Animália', CDC: 'Cidade da Criança' };
 const STATUS = [
   { id: 'pendente', l: 'Pendente', c: 'var(--s-pendente)' },
   { id: 'analise', l: 'Em análise', c: 'var(--s-analise)' },
-  { id: 'planejada', l: 'Planejada', c: 'var(--s-planejada)' },
-  { id: 'andamento', l: 'Em andamento', c: 'var(--s-andamento)' },
-  { id: 'aplicada', l: 'Aplicada', c: 'var(--s-aplicada)' },
+  { id: 'planejada', l: 'Em produção', c: 'var(--s-planejada)' },
+  { id: 'andamento', l: 'Em aplicação', c: 'var(--s-andamento)' },
+  { id: 'aplicada', l: 'Concluído', c: 'var(--s-aplicada)' },
   { id: 'descartada', l: 'Descartada', c: 'var(--s-descartada)' },
 ];
 const SM = Object.fromEntries(STATUS.map(s => [s.id, s]));
@@ -387,7 +497,7 @@ const LANES = [
   { id: 'imediata', l: 'Prioridade imediata', d: 'Alto impacto e baixa complexidade, ou prazo vencendo. Comece por aqui.', c: 'var(--accent)' },
   { id: 'proximas', l: 'Próximas implementações', d: 'Ações relevantes que exigem planejamento.', c: 'var(--s-planejada)' },
   { id: 'validacao', l: 'Dependentes de validação', d: 'Aguardam aprovação, acesso, material ou outra ação anterior.', c: 'var(--s-analise)' },
-  { id: 'acompanhamento', l: 'Acompanhamento', d: 'Ações iniciadas que precisam de continuidade.', c: 'var(--s-andamento)' },
+  { id: 'acompanhamento', l: 'Acompanhamento', d: 'Rotinas contínuas e ações que a equipe colocar aqui.', c: 'var(--s-andamento)' },
 ];
 const LM = Object.fromEntries(LANES.map(l => [l.id, l]));
 const ROUTES = [
@@ -511,11 +621,11 @@ function eff(x) {
 function depsOf(e, map) {
   return (e.r.deps || []).map(d => map[d + '_' + e.p]).filter(Boolean);
 }
-function laneOf(e, map) {
-  if (e.done) return null;
+function laneOf(e, map, incluiFeitas) {
+  if (e.done && !incluiFeitas) return null;
   if (e.grupoManual) return e.grupoManual;
   if (e.fixado) return 'imediata';
-  if (e.status === 'andamento') return 'acompanhamento';
+  if (e.r.recorrente) return 'acompanhamento';
   const open = depsOf(e, map).filter(d => d.status !== 'aplicada');
   if ((e.r.validacao && !e.validacaoOk) || open.length) return 'validacao';
   if ((e.prioridade === 'Alta' && (e.esforco === 'Baixo' || e.esforco === '')) || e.late || e.dueIn <= 3) return 'imediata';
@@ -605,17 +715,16 @@ function App() {
   const selE = sel && M.map[sel];
   return html`
     <header class="band">
-      <${Diamonds} />
       <div class="wrap">
         <div class="brandrow">
-          <img src="img/478-simbolo.png" alt="Quatro Sete Oito" width="34" height="34" />
-          <div class="prod">Central do Cliente<small>Parques · Aquário de São Paulo, Animália Park e Cidade da Criança</small></div>
+          <img class="logo" src="img/478-horizontal.png" alt="quatro sete oito · administração & marketing" />
           <span class="spacer"></span>
+          <span class="tagline">Clareza para o próximo passo.</span>
           <${Access} />
         </div>
         <div class="hero">
           <div>
-            <div class="eyebrow" style=${{ color: 'var(--band-muted)' }}>Área da Central</div>
+            <div class="eyebrow">Central do Cliente · Parques</div>
             <h1>Parceria <span>Google</span></h1>
             <p>Gestão das recomendações do Programa de Crescimento Acelerado do Google, apresentadas em 27/10/2026, e do plano de otimização das contas de Google Ads.</p>
           </div>
@@ -810,33 +919,75 @@ function Strategy({ M, go, setSel }) {
 }
 
 /* ---------------- Próximas ações ---------------- */
+const KCOLS = ['pendente', 'analise', 'planejada', 'andamento', 'aplicada'];
 function NextActions({ M, setSel, onStatus }) {
-  const [more, setMore] = useState({});
   const [how, setHow] = useState(false);
-  const open = M.scoped.filter(e => e.lane);
-  const by = l => open.filter(e => e.lane === l).sort((a, b) => b.score - a.score || a.prazo.localeCompare(b.prazo));
-  const top = by('imediata')[0];
+  const [disc, setDisc] = useState(false);
+  const [drag, setDrag] = useState(null);
+  const [over, setOver] = useState('');
+  const [more, setMore] = useState({});
+  const [fold, setFold] = useState(() => { try { return JSON.parse(localStorage.getItem('pg-kfold') || '{}'); } catch (e) { return {}; } });
+  const toggle = id => { const f = { ...fold, [id]: !fold[id] }; setFold(f); try { localStorage.setItem('pg-kfold', JSON.stringify(f)); } catch (e) {} };
+  const L = M.scoped.filter(e => e.status !== 'descartada');
+  L.forEach(e => { e.klane = laneOf(e, M.map, true) || 'proximas'; });
+  const descartadas = M.scoped.filter(e => e.status === 'descartada');
+  const cell = (l, st) => L.filter(e => e.klane === l && e.status === st).sort((a, b) => st === 'aplicada' ? (b.dataConclusao || '').localeCompare(a.dataConclusao || '') : (b.score - a.score || a.prazo.localeCompare(b.prazo)));
+  const colCount = st => L.filter(e => e.status === st).length;
+  const ed = canEdit();
+  async function drop(l, st) {
+    const e = drag && M.map[drag]; setDrag(null); setOver('');
+    if (!e || !ed) return;
+    if (l !== e.klane) {
+      const ok = await saveTrack(e, { grupoManual: l, ...(e.fixado && l !== 'imediata' ? { fixado: false } : {}) },
+        [{ tipo: 'prioridade', campo: 'Posição em Próximas ações', de: LM[e.klane].l, para: LM[l].l }],
+        st === e.status ? `${e.r.id} · ${PSHORT[e.p]}: movida para ${LM[l].l}.` : null);
+      if (!ok) return;
+    }
+    if (st !== e.status) onStatus({ ...e, t: S.T[e.key] || e.t }, st);
+  }
+  const dz = (l, st) => ({
+    onDragOver: ev => { if (!drag) return; ev.preventDefault(); ev.dataTransfer.dropEffect = 'move'; if (over !== l + '|' + st) setOver(l + '|' + st); },
+    onDragLeave: ev => { if (!ev.currentTarget.contains(ev.relatedTarget)) setOver(''); },
+    onDrop: ev => { ev.preventDefault(); drop(l, st); },
+  });
   return html`<div>
-    <div class="section-head"><div><h2>O que precisamos fazer agora?</h2><p>Ações em aberto organizadas automaticamente por prioridade, impacto, esforço, dependências, prazo e status. A equipe pode fixar ações ou mudar a posição de cada uma no detalhe.</p></div>
+    <div class="section-head"><div><div class="eyebrow">Próximas ações</div><h2>O que precisamos fazer agora?</h2><p>Cada coluna é uma etapa e cada faixa é uma prioridade. Arraste um card para outra coluna para mudar a etapa, ou para outra faixa para mudar a prioridade.</p></div>
       <button class="btn" onClick=${() => setHow(!how)}>${how ? 'Ocultar critérios' : 'Como a priorização funciona'}</button></div>
     ${how ? html`<div class="panel" style=${{ marginBottom: '14px' }}><div class="ph"><h3>Critérios de priorização</h3><span class="tag-int">Avaliação interna</span></div>
       <div class="grid g-2 small" style=${{ color: 'var(--ink-2)' }}>
-        <div><b>Prioridade imediata:</b> prioridade Alta com esforço Baixo (definidos pelo Google), prazo expirado ou vencendo em até 3 dias, ou ação fixada pela equipe.<br/><b>Dependentes de validação:</b> exigem aprovação de verba, acesso ao site, material criativo, base de clientes ou a conclusão de outra ação (dependências identificadas pela equipe a partir do texto do Google).</div>
-        <div><b>Acompanhamento:</b> status Em andamento.<br/><b>Próximas implementações:</b> demais ações em aberto.<br/><b>Ordem dentro de cada grupo:</b> prioridade (30/20/10) + facilidade (15/8/0) + impacto (10/5/0) + proximidade do prazo (até 20). Ações aplicadas ou descartadas saem da lista.</div>
+        <div><b>Prioridade imediata:</b> prioridade Alta com esforço Baixo (definidos pelo Google), prazo expirado ou vencendo em até 3 dias, ou ação fixada pela equipe.<br/><b>Dependentes de validação:</b> exigem aprovação de verba, acesso ao site, material criativo, base de clientes ou a conclusão de outra ação.</div>
+        <div><b>Acompanhamento:</b> rotinas contínuas e ações que a equipe colocar aqui.<br/><b>Próximas implementações:</b> demais ações.<br/><b>Ordem dentro de cada faixa:</b> prioridade (30/20/10) + facilidade (15/8/0) + impacto (10/5/0) + proximidade do prazo (até 20). Ao arrastar para outra faixa, a posição escolhida pela equipe passa a valer.</div>
       </div></div>` : null}
-    ${top ? html`<div class="panel chamfer" style=${{ marginBottom: '14px', background: 'linear-gradient(120deg,var(--brand-soft),var(--surface))', borderColor: 'transparent' }}>
-      <div class="eyebrow">Sugestão para começar</div>
-      <div style=${{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap', marginTop: '6px' }}>
-        <div style=${{ flex: '1 1 320px', minWidth: 0 }}><div style=${{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '17px' }}>${top.r.titulo}</div><div class="small muted">${top.r.id} · ${PN[top.p]} · prazo ${fd(top.prazo)} · ${top.r.resumo}</div></div>
-        <${StatusSelect} e=${top} onPick=${onStatus} /><button class="btn primary" onClick=${() => setSel(top.key)}>Abrir ação</button></div></div>` : null}
-    <div class="lanes">${LANES.map(l => { const items = by(l.id); const lim = more[l.id] ? items.length : 8; return html`<section class="lane" aria-label=${l.l}>
-      <div class="lane-h"><span class="mark" style=${{ background: l.c }}></span><h3>${l.l}</h3><span class="count num">${items.length}</span></div>
-      <p class="lane-d">${l.d}</p>
-      <div class="grid" style=${{ gap: '8px' }}>${items.slice(0, lim).map(e => html`<${ActionCard} e=${e} M=${M} setSel=${setSel} onStatus=${onStatus} compact=${true} />`)}
-      ${!items.length ? html`<div class="empty small" style=${{ padding: '16px' }}>Nada aqui agora.</div>` : null}
-      ${items.length > 8 ? html`<button class="btn sm" onClick=${() => setMore({ ...more, [l.id]: !more[l.id] })}>${more[l.id] ? 'Mostrar menos' : `Mostrar todas (${items.length})`}</button>` : null}</div>
-    </section>`; })}</div>
+    <div class="k-tools"><span class="hint"><i></i>${ed ? 'Arraste os cards para mover. Ao soltar em Concluído, a Central pede a data e a evidência.' : 'Acesso de consulta: os cards não podem ser movidos.'}</span><span class="grow"></span>
+      ${descartadas.length ? html`<button class="btn sm" onClick=${() => setDisc(!disc)}>${disc ? 'Ocultar descartadas' : `Ver descartadas (${descartadas.length})`}</button>` : null}</div>
+    <div class="kwrap"><div class="kboard" role="grid" aria-label="Quadro de próximas ações">
+      ${KCOLS.map(st => html`<div class="kcol-h" role="columnheader"><${SDot} s=${st} /><h3>${SM[st].l}</h3><span class="n num">${colCount(st)}</span></div>`)}
+      ${LANES.map(l => { const tot = L.filter(e => e.klane === l.id).length; const open = !fold[l.id]; return html`
+        <button class="klane-h" aria-expanded=${open} onClick=${() => toggle(l.id)}><span class="mark" style=${{ background: l.c }}></span><h3>${l.l}</h3><span class="n num">${tot}</span><span class="d">${l.d}</span><span class="chev"></span></button>
+        ${open ? KCOLS.map(st => { const items = cell(l.id, st); const k = l.id + '|' + st; const lim = more[k] ? items.length : (st === 'aplicada' ? 4 : 6); return html`
+          <div class=${'kcell' + (over === k ? ' over' : '')} role="gridcell" aria-label=${`${l.l} · ${SM[st].l}`} ...${dz(l.id, st)}>
+            ${items.slice(0, lim).map(e => html`<${KCard} e=${e} M=${M} setSel=${setSel} onStatus=${onStatus} drag=${drag} setDrag=${setDrag} ed=${ed} />`)}
+            ${items.length > lim || more[k] && items.length > (st === 'aplicada' ? 4 : 6) ? html`<button class="kmore" onClick=${() => setMore({ ...more, [k]: !more[k] })}>${more[k] ? 'Mostrar menos' : `+ ${items.length - lim} ações`}</button>` : null}
+            ${!items.length ? html`<div class="none">${drag ? 'Soltar aqui' : '—'}</div>` : null}
+          </div>`; }) : null}`; })}
+    </div></div>
+    ${disc && descartadas.length ? html`<div class="panel kdisc"><div class="ph"><h3>Descartadas</h3><span class="note">Ficam fora do quadro. Abra a ação para reverter.</span></div>
+      <div class="list">${descartadas.map(e => html`<button class="li" onClick=${() => setSel(e.key)}><span class="grow"><span class="li-t">${e.r.id} · ${e.r.titulo}</span><div class="small muted">${PN[e.p]}${e.motivoDescarte ? ' · ' + e.motivoDescarte : ''}</div></span></button>`)}</div></div>` : null}
   </div>`;
+}
+function KCard({ e, M, setSel, onStatus, drag, setDrag, ed }) {
+  const rs = reasonsOf(e, M.map).filter(([t, k]) => k === 'late' || k === 'alta' || k === 'media' || k === 'ghost' || k === 'ok').slice(0, 2);
+  const pin = ev => { ev.stopPropagation(); saveTrack(e, { fixado: !e.fixado, ...(!e.fixado ? { grupoManual: '' } : {}) }, [{ tipo: 'prioridade', campo: 'Fixação', de: e.fixado ? 'Fixada' : 'Automática', para: e.fixado ? 'Automática' : 'Fixada como prioridade imediata' }], e.fixado ? 'Ação liberada para priorização automática.' : 'Ação fixada em Prioridade imediata.'); };
+  return html`<article class=${'kcard' + (drag === e.key ? ' dragging' : '') + (flashKey === e.key ? ' flash' : '')} draggable=${ed ? 'true' : 'false'}
+      onDragStart=${ev => { ev.dataTransfer.effectAllowed = 'move'; try { ev.dataTransfer.setData('text/plain', e.key); } catch (x) {} setDrag(e.key); }}
+      onDragEnd=${() => setDrag(null)}>
+    ${!e.done && ed ? html`<button class="pin" aria-pressed=${e.fixado} title=${e.fixado ? 'Remover fixação' : 'Fixar em Prioridade imediata'} onClick=${pin}>${e.fixado ? I.pin : I.pinO}<span class="sr">Fixar</span></button>` : null}
+    <div class="top"><span class="id">${e.r.id}</span><${ParkChip} p=${e.p} />${e.r.fonte === 'Apresentação' ? html`<span class="chip" title="Recomendação da apresentação de 27/10">Apres.</span>` : null}</div>
+    <button class="t" onClick=${() => setSel(e.key)}>${e.r.titulo}</button>
+    ${rs.length ? html`<div class="reasons">${rs.map(([t, k]) => html`<span class=${'chip ' + k}>${t}</span>`)}</div>` : null}
+    <div class="foot"><span style=${{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}><span class=${'when num' + (e.late ? ' late' : '')}>${e.status === 'aplicada' && e.dataConclusao ? 'Concluído ' + fd(e.dataConclusao) : e.r.recorrente ? 'Contínua' : 'Prazo ' + fd(e.prazo)}</span>${e.evid ? html`<span title="Evidências" style=${{ display: 'inline-flex', gap: '3px', alignItems: 'center' }}>${I.file}${e.evid}</span>` : null}</span>
+      <${StatusSelect} e=${e} onPick=${onStatus} /></div>
+  </article>`;
 }
 function ActionCard({ e, M, setSel, onStatus, compact }) {
   const rs = reasonsOf(e, M.map);
