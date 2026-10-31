@@ -428,7 +428,7 @@ $('#loginForm').onsubmit=e=>{
   e.preventDefault();
   const u=$('#user').value.trim()||'visitante', p=$('#pw').value;
   if(p!==PASS){$('#err').classList.add('on');$('#pw').classList.add('shake');setTimeout(()=>$('#pw').classList.remove('shake'),500);$('#pw').select();return;}
-  user=u;const first=u.split(' ')[0];const ini=first[0].toUpperCase();
+  user=u;try{if(u.toLowerCase()!=='visitante')localStorage.setItem('central-usuario',u);}catch(_){}const first=u.split(' ')[0];const ini=first[0].toUpperCase();
   $('#hello').textContent=first;['#name1','#name2','#name3'].forEach(s=>$(s).textContent=first);['#av1','#av2','#av3'].forEach(s=>$(s).textContent=ini);
   $('#err').classList.remove('on');show('#select');
 };
