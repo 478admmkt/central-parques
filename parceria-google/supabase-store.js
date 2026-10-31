@@ -65,15 +65,31 @@
       });
     });
   }
-  var mePromise = null;
-  function me() {
-    if (!mePromise) mePromise = (async function () {
-      var name = storedName() || await askName();
-      var id = slug(name);
-      try { await client().from('pg_pessoas').upsert({ id: id, nome: name, visto_em: new Date().toISOString() }); } catch (e) {}
-      return { id: id, name: name };
-    })();
-    return mePromise;
+  var ident = null, identPromise = null;
+  async function register(name) {
+    var id = slug(name);
+    try { await client().from('pg_pessoas').upsert({ id: id, nome: name, visto_em: new Date().toISOString() }); } catch (e) {}
+    ident = { id: id, name: name };
+    try { window.dispatchEvent(new CustomEvent('pg-me', { detail: ident })); } catch (e) {}
+    return ident;
+  }
+  // Quem só consulta não é interrompido: o nome é pedido na primeira alteração.
+  async function me() {
+    var n = storedName();
+    if (!n) return { id: null, name: '' };
+    return ident || register(n);
+  }
+  function ensureIdent() {
+    if (ident) return Promise.resolve(ident);
+    if (!identPromise) identPromise = (async function () { var n = storedName() || await askName(); return register(n); })();
+    return identPromise;
+  }
+  var AUTHOR_FIELDS = ['por', 'atualizadoPor', 'criadoPor', 'arquivadoPor', 'removidaPor'];
+  async function withAuthor(o) {
+    if (!o || typeof o !== 'object') return o;
+    var me = await ensureIdent(), out = Object.assign({}, o);
+    AUTHOR_FIELDS.forEach(function (k) { if (k in out && !out[k]) out[k] = me.id; });
+    return out;
   }
   window.pgTrocarNome = function () { try { localStorage.removeItem(NAME_KEY); } catch (e) {} location.reload(); };
 
@@ -108,6 +124,7 @@
         return function () { alive = false; client().removeChannel(ch); };
       },
       add: async function (body) {
+        body = await withAuthor(body);
         var row = { dados: body }; row[c.pk] = uuid();
         var res = await client().from(c.t).insert(row);
         if (res.error) throw fail(res.error);
@@ -119,6 +136,7 @@
     var i = path.indexOf('/'), col = path.slice(0, i), id = path.slice(i + 1), c = cfg(col);
     return {
       set: async function (body) {
+        body = await withAuthor(body);
         var row = { dados: body }; row[c.pk] = id;
         if (col === 'acompanhamento') { row.acao = body.acao; row.parque = body.parque; }
         if (col === 'evidencias') row.chave = body.chave;
@@ -126,6 +144,7 @@
         if (res.error) throw fail(res.error);
       },
       update: async function (patch) {
+        patch = await withAuthor(patch);
         var res = await client().rpc('pg_atualizar', { p_tabela: col, p_id: id, p_patch: patch });
         if (res.error) throw fail(res.error);
       }
@@ -141,6 +160,7 @@
   window.pgBlobUrl = function (id) { return /^https?:\/\//.test(id) ? id : publicUrl(id); };
   var assets = {
     upload: async function (file) {
+      await ensureIdent();
       if (file.size > 20 * 1024 * 1024) throw fail({ message: 'arquivo acima de 20 MB', code: 'quota_exceeded' });
       var ext = ((file.name || '').match(/\.[a-z0-9]{1,6}$/i) || [''])[0].toLowerCase();
       var d = new Date(), path = d.getFullYear() + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + uuid() + ext;

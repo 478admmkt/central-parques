@@ -536,6 +536,7 @@ async function initStore() {
   Object.assign(S, { db, user, assets, downloads });
   if (user) {
     try { const me = await user.me(); S.me = { id: me.id, name: me.name || '' }; } catch (e) {}
+    addEventListener('pg-me', ev => { S.me = { id: ev.detail.id, name: ev.detail.name }; refresh(); });
     try { S.canWrite = await user.can('data.write'); } catch (e) {}
     try { S.canAdmin = await user.canEdit(); } catch (e) {}
   }
