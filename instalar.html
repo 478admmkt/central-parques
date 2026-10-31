@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0c25a3">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root{--azul:#0c25a3;--verde:#0dea9b;--cinza:#616c90;--azul-deep:#071868;--azul-ink:#040b33;
   --grad:linear-gradient(135deg,var(--azul) 0%,#0a6fc9 55%,var(--verde) 100%);
@@ -81,6 +81,35 @@ body{font-family:var(--ft-body);color:var(--azul-ink);background:var(--azul-ink)
 .footer b{color:#fff;font-weight:600}
 @media(max-width:640px){.hero{grid-template-columns:1fr}.phone{justify-self:center}.topbar .t{display:none}.wrap{padding:0 16px 60px}.card{padding:22px 18px}.card .meta{margin-left:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===================== Tema claro 478 (referência Engenharia de Demanda) ===================== */
+:root{--ft-sub:'DM Sans',sans-serif;--ft-body:'DM Sans',sans-serif}
+body{background:#f4f5f9;color:#01032c}
+.bg{background:#f4f5f9}.bg .blob,.bg .grid{display:none}
+.topbar{border-bottom:1px solid #e4e6ee}
+.topbar .back{border-radius:999px}
+.hero{color:#01032c}
+.eyebrow{color:#616c90;letter-spacing:.24em;font-size:11px}
+.eyebrow::before{content:"";display:inline-block;width:30px;height:2px;border-radius:2px;background:var(--verde);vertical-align:middle;margin-right:12px}
+.hero p{color:#616c90}
+.phone .scr{background:#fff;border-color:#e4e6ee;box-shadow:0 20px 40px -20px rgba(1,3,44,.25)}
+.phone .app{background:#eef0f6}
+.phone .lbl{color:#01032c}
+.phone .dock{background:#eef0f6}
+.phone .notch{background:#c9cddc}
+.tab{background:#fff;color:#616c90;border:1px solid #e4e6ee;border-radius:999px}
+.tab.on{background:var(--azul);color:#fff;box-shadow:none}
+.card{border-radius:24px;border:1px solid #e4e6ee;box-shadow:0 1px 2px rgba(1,3,44,.04),0 4px 14px rgba(1,3,44,.05)}
+.card::after{display:none}
+.card h2 .os{background:var(--azul);border-radius:50%}
+.step{border-radius:20px;border:1px solid #e4e6ee;background:#fff}
+.step:hover{box-shadow:0 12px 32px rgba(1,3,44,.10)}
+.step .n{background:var(--verde);color:#01032c;border-radius:50%}
+.note{border-radius:14px;border-left:0;box-shadow:inset 4px 0 0 var(--verde);background:#dafbee}
+.done{background:#fff;border:1px solid #e4e6ee;color:#01032c}
+.done p{color:#616c90}
+.footer{background:var(--azul);color:#dfe4ff;border:0}
+.footer b{color:#fff}
 </style>
 </head>
 <body>

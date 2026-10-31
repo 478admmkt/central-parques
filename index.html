@@ -11,12 +11,12 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0c25a3">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Central Parques">
 <meta name="application-name" content="Central Parques">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --azul:#0c25a3; --verde:#0dea9b; --branco:#ffffff; --preto:#000000; --cinza:#616c90;
@@ -271,6 +271,76 @@ a.sub:hover::after{opacity:1}
   .topbar .in{gap:8px;padding:8px 14px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+/* ===================== Tema claro 478 (referência Engenharia de Demanda) ===================== */
+:root{--ft-sub:'DM Sans',system-ui,sans-serif;--ft-body:'DM Sans',system-ui,sans-serif;
+  --fundo:#f4f5f9;--linha:#e4e6ee;--tinta:#01032c;--tinta-2:#2f3658;--verde-suave:#dafbee;--azul-suave:#e9edfc;
+  --sombra:0 1px 2px rgba(1,3,44,.04),0 4px 14px rgba(1,3,44,.05);--sombra-2:0 12px 32px rgba(1,3,44,.10)}
+body{background:var(--fundo);color:var(--tinta)}
+.bg{background:var(--fundo)}
+.bg .blob,.bg .grid,.bg #stars,.bg .noise{display:none}
+/* login */
+.card{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid var(--linha);box-shadow:var(--sombra-2);border-radius:24px}
+.card::before{display:none}
+.card h1{color:var(--tinta)}
+.card h1 span{background:none;color:var(--azul);-webkit-text-fill-color:currentColor}
+.eyebrow{letter-spacing:.24em;font-size:11px}
+.field input{background:#fff;border-color:var(--linha);border-radius:999px;padding:0 20px}
+.field input.pw{padding-right:84px}
+.eye{border-radius:999px}
+.btn{background:var(--azul);border-radius:999px;box-shadow:none}
+.btn:hover{background:#1b36c4;background-position:0 0;box-shadow:0 10px 24px -12px rgba(12,37,163,.55)}
+.btn::after{display:none}
+.login-hint{color:var(--cinza)}
+.hint-link{color:var(--azul)}
+/* topo */
+.topbar{background:rgba(255,255,255,.94);border-bottom:1px solid var(--linha)}
+.chip{background:#f4f5f9;border:1px solid var(--linha)}
+.chip .av{background:var(--azul)}
+.link{border-radius:999px}
+/* títulos das telas */
+.hero{color:var(--tinta)}
+.hero .eyebrow{color:var(--cinza)}
+.hero .eyebrow::before{content:"";display:inline-block;width:30px;height:2px;border-radius:2px;background:var(--verde);vertical-align:middle;margin-right:12px}
+.hero h2{color:var(--tinta);font-size:clamp(32px,5vw,56px);letter-spacing:-.03em}
+.hero p{color:var(--cinza)}
+.sec-title{color:var(--tinta)}
+.sec-title h2{letter-spacing:-.025em}
+.sec-title p{color:var(--cinza)}
+/* cartões (parques, categorias, itens) */
+.bu,.cat,.sub,.bu-head{box-shadow:var(--sombra);border:1px solid var(--linha)}
+.bu,.cat{border-radius:24px}
+.sub{border-radius:20px}
+.bu::before,.cat::before,a.sub::after{background:var(--azul)}
+.bu::after,.cat::after{display:none}
+.bu:hover,.bu:focus-visible,.cat:hover,.cat:focus-visible,.sub:hover{box-shadow:var(--sombra-2);transform:translateY(-4px)}
+.bu .logo-wrap{background:#f7f8fb;border:1px solid var(--linha)}
+.bu .go,.cat .go{background:var(--azul)}
+.ico{background:var(--azul);box-shadow:none;border-radius:50%}
+.cat:hover .ico{transform:none}
+.sub .n{background:var(--verde);color:var(--tinta);border-radius:50%}
+.sub.locked .n{background:#eef0f6;color:#a3aac4}
+.pill{border-radius:999px}
+.pill.ok{background:var(--verde-suave);color:#04774f}
+.pill.date{background:var(--azul-suave)}
+.mini{border-radius:999px;background:#f4f5f9;border:1px solid var(--linha)}
+.wk{border-radius:50%}
+.wk.on{background:var(--azul)}
+.countdown b{background:none;color:var(--azul);-webkit-text-fill-color:currentColor}
+.soon{background:#fff;border:1px dashed #c9cddc;color:var(--cinza)}
+.soon b{color:var(--tinta)}
+.note{background:#fff;border:1px solid var(--linha);color:var(--tinta-2);box-shadow:var(--sombra)}
+.note svg{color:#04a56e}
+.back{background:#fff;color:var(--tinta);border:1px solid var(--linha)}
+.back:hover{background:var(--azul-suave)}
+.crumbs a{color:var(--azul)}
+/* visualizador */
+#viewer .vbar{border-bottom:1px solid var(--linha)}
+#viewer .vbtn{border-radius:999px}
+/* rodapé: faixa azul da marca */
+.footer{background:var(--azul);color:#dfe4ff;border:0}
+.footer b{color:#fff}
+.footer .hint-link{color:var(--verde)}
 </style>
 </head>
 <body>
